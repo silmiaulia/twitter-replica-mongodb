@@ -1,0 +1,327 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+    color: solid black;
+    font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
+
+}
+
+#fixedarrow {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+    padding: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+a,
+li {
+    text-decoration: none;
+    list-style: none;
+    color: white;
+}
+
+li:hover {
+    color: rgb(36, 86, 136);
+    background-color: rgb(36, 86, 136);
+    opacity: 0.9;
+    border-radius: 30px;
+    width: 200px;
+    cursor: pointer;
+    text-align: center;
+}
+
+#twittericon {
+    color: white;
+    font-size: 25px;
+    margin-left: 75px;
+}
+
+#twittericon:hover {
+    color: royalblue;
+}
+
+#icons {
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+.leftverticalmenu {
+    height: 100vh;
+    width: 300px;
+    text-align: left;
+    line-height: 60px;
+    font-size: 20px;
+    border-right: 1px solid lightgray;
+    position: fixed;
+    background-color: lightgray;
+
+}
+
+ul {
+    margin: auto;
+    width: 50%;
+    margin-top: -10px;
+
+}
+
+.profileimage {
+    border-radius: 50%;
+    border: 2px solid solid lightgray;
+    width: 25px;
+    margin-right: 10px;
+    margin-bottom: -5px;
+}
+
+figure {
+    border-radius: 50px;
+    height: 55px;
+    font-weight: bold;
+    background-color: rgb(29, 161, 242);
+    width: 200px;
+    text-align: center;
+    margin: auto;
+    font-size: 15px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+figure:hover {
+    opacity: 0.9;
+}
+
+/* MIDDLE AND RIGHT CONTAINERS */
+
+.flexcontainer {
+    position: absolute;
+    left: 300px;
+}
+
+.middlecontainer {
+    width: 1550px;
+    border: 1px solid lightgray;
+    height: 100%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.headsec {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+}
+
+#fa-arrow-left {
+    color: black;
+    filter: brightness(70%);
+    font-size: 30px;
+    margin: 10px 20px 0 20px;
+    cursor: pointer;
+}
+
+span {
+    filter: brightness(50%)
+}
+
+.headerprofileimage {
+    margin-top: 10px;
+    position: relative;
+}
+
+#headerimage {
+    width: 100%;
+  height:400px;
+}
+
+.profilepic {
+    border-radius: 50%;
+    width: 250px;
+    height:230px;
+    position: absolute;
+    top: 290px;
+    left: 30px;
+    border: 10px solid black;
+}
+
+.editprofile {
+    /* margin-top: 5px; */
+    float: right;
+    border: 1px solid lightgray;
+    border-radius: 40px;
+    padding-top: 13px;
+    padding-bottom: 20px;
+    padding-left: 32px;
+    padding-right: 18px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 20px;
+    width: 190px;
+    height: 60px;
+    font-size: 25px;
+}
+
+.bio {
+    margin-top: 110px;
+    margin-left: 30px;
+    line-height: 40px;
+    font-size: 25px;
+}
+
+.handle {
+    padding-top: 30px ;
+    padding-left: 20px;
+    line-height: 30px;
+    margin-bottom: 10px;
+}
+
+.followers {
+    margin-right: 15px;
+}
+
+.nawa {
+    display: flex;
+    margin-top: 55px;
+    margin-left: 20px;
+    line-height: 40px;
+    font-size: 21px;
+    color: gray;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid white;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 22px;
+    color: dimgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.heading p {
+    display: block;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.heading p:hover {
+    background: #1DA1F2;
+}
+
+.avi {
+    width: 90px;
+    border-radius: 50%;
+    height: 90px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.mytweets {
+    display: flex;
+    margin: 15px 0 15px 0;
+    margin-bottom: 800px;
+    margin-top: 30px;
+    margin-left: 20px;
+    font-size: 25px;
+}
+
+.tweetcontent {
+    margin-left: 20px;
+    /* margin-top: 5px; */
+}
+
+.retweeticons {
+    margin-top: 5px;
+    margin-left: -60px;
+    display: inline-flex;
+    justify-content: space-evenly;
+}
+
+
+/* RIGHT VERTICAL CONTAINER */
+
+.flexcontainer {
+    display: flex;
+}
+
+.searchbar {
+    display: inline-flex;
+    margin: 10px 0 0 25px;
+    border: 1px solid rgb(155, 157, 160);
+    padding: 13px;
+    border-radius: 20px;
+    width: 300px;
+}
+
+#searchbox {
+    border: none;
+    background-color: transparent;
+    color: rgb(155, 157, 160);
+}
+
+.searchicon {
+    color: royalblue;
+    margin-right: 15px;
+}
+
+.twittermedia {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    margin: 10px 0 0 25px;
+    width: 300px;
+}
+
+.twittermedia img {
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+}
+
+.nigeriatrends {
+    margin: 30px 0 0 25px;
+    width: 300px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 10px 0;
+}
+
+#fa-cog {
+    color: royalblue;
+    margin-top: 5px;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.headertrends {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgray;
+    padding: 10px;
+}
+
+.trending {
+    filter: brightness(50%)
+}
+
+.trenditem {
+    border-bottom: 1px ssolid lightgray;
+    padding: 10px;
+    line-height: 22px;
+}
+
+.hashtag {
+    font-weight: bolder;
+}
