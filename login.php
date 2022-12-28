@@ -47,11 +47,7 @@
                             </path>
                         </g>
                     </svg>
-                    <h1 class="text-black text-3xl font-bold ">Sign in to Twitter</h1>
-                    <div class="py-8 text-red-500">
-                        <p>error</p>
-                    </div>
-                    
+                    <h1 class="text-black text-3xl font-bold py-10">Sign in to Twitter</h1>                    
                     <form class="form-horizontal space-y-4" method="post" action="login_action.php">
                         <div class="form-group">
                             <input class="form-control w-full p-2 bg-white rounded-md border border-gray-300 focus:outline-none focus:border-sky-500"
