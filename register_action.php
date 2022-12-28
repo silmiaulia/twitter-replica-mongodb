@@ -25,7 +25,7 @@
             $password = password_hash($temp, PASSWORD_BCRYPT, $options);
         
 
-            if(!empty($POST['foto'])) {
+            if($_FILES['foto']){
 
                 $fileName = $_FILES['foto']['name'];
                 $fileType = $_FILES['foto']['type'];
