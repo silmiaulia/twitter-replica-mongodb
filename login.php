@@ -4,6 +4,7 @@
     if(isLogin()){
         header("Location: home.php");
     }
+    
 ?>
 <html>
     <head>
@@ -37,7 +38,7 @@
     <body class="bg-[#D9D9DB]">
         <div class="flex min-h-screen items-center justify-center">
 
-            <div class="min-h-1/2 bg-white rounded-2xl">
+            <div class="min-h-1/2 bg-white rounded-2xl shadow-lg">
                 <div class="px-32 flex items-center space-y-4 py-28 text-gray-500 flex-col">
                     <svg viewBox="0 0 24 24" class=" h-12 w-12 text-[#1DA1F2]" fill="currentColor">
                         <g>
@@ -46,7 +47,11 @@
                             </path>
                         </g>
                     </svg>
-                    <h1 class="text-black text-3xl font-bold py-8">Sign in to Twitter</h1>
+                    <h1 class="text-black text-3xl font-bold ">Sign in to Twitter</h1>
+                    <div class="py-8 text-red-500">
+                        <p>error</p>
+                    </div>
+                    
                     <form class="form-horizontal space-y-4" method="post" action="login_action.php">
                         <div class="form-group">
                             <input class="form-control w-full p-2 bg-white rounded-md border border-gray-300 focus:outline-none focus:border-sky-500"

@@ -14,8 +14,8 @@
     <body class="bg-[#D9D9DB]">
         <div class="flex min-h-screen items-center justify-center">
 
-            <div class="min-h-1/2 bg-white rounded-2xl">
-                <div class="px-32 flex items-center space-y-4 py-28 text-gray-500 flex-col">
+            <div class="min-h-1/2 bg-white rounded-2xl shadow-lg">
+                <div class="px-32 flex items-center space-y-4 py-20 text-gray-500 flex-col">
                     <svg viewBox="0 0 24 24" class=" h-12 w-12 text-[#1DA1F2]" fill="currentColor">
                         <g>
                             <path
@@ -24,7 +24,7 @@
                         </g>
                     </svg>
                     <h1 class="text-black text-3xl font-bold py-8">Creat your account</h1>
-                    <form class="form-horizontal space-y-4" method="post" action="register_action.php">
+                    <form class="form-horizontal space-y-4" method="post" action="register_action.php" enctype="multipart/form-data">
                         <div class="form-group">
                             <input class="form-control w-full p-2 bg-white rounded-md border border-gray-300 focus:outline-none focus:border-sky-500"
                             placeholder="Username" type="text" name="username" id="username" required>
@@ -37,10 +37,12 @@
                             <input class="form-control w-full p-2 mb-15 bg-white rounded-md border border-gray-300 focus:outline-none focus:border-sky-500" placeholder="Password"
                             type="password" name="password" id="password" required> 
                         </div>
-                       
-
-                        <input class="form-control w-full p-2 mb-15 bg-white rounded-md border border-gray-300 focus:outline-none focus:border-sky-500" placeholder="Confirm Password"
+                        <div>
+                            <input class="form-control w-full p-2 mb-15 bg-white rounded-md border border-gray-300 focus:outline-none focus:border-sky-500" placeholder="Confirm Password"
                             type="password" id="cpass" name="cpass" onblur="chk()" required> 
+                        </div>
+                        <input class="form-control w-full p-2 mb-15 bg-white rounded-md border border-gray-300 focus:outline-none focus:border-sky-500" placeholder="Upload Photo Profile"
+                            type="file" name="foto" id="foto" accept="image/*"> 
                         <button class="w-full p-2 bg-black rounded-full font-bold text-white" type="submit" name="sign-up">Sign Up</button>
                     </form>
                     <p>Have an account already? <a style="color:#1DA1F2;" href="login.php">Sign In</a></p>
