@@ -114,7 +114,7 @@
 
     }
 
-    // for get image 
+    //  get image 
     function parseQuery( $template ){
         $values = array_slice( func_get_args(), 1 );
         $query = vsprintf( $template, $values );

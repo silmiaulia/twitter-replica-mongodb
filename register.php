@@ -41,8 +41,12 @@
                             <input class="form-control w-full p-2 mb-15 bg-white rounded-md border border-gray-300 focus:outline-none focus:border-sky-500" placeholder="Confirm Password"
                             type="password" id="cpass" name="cpass" onblur="chk()" required> 
                         </div>
-                        <input class="form-control w-full p-2 mb-15 bg-white rounded-md border border-gray-300 focus:outline-none focus:border-sky-500" placeholder="Upload Photo Profile"
-                            type="file" name="foto" id="foto" accept="image/*"> 
+                        <div>
+                            <label for="foto" class="py-5">Upload Photo Profile</label>
+                            <input class="form-control w-full p-2 mb-15 bg-white rounded-md border border-gray-300 focus:outline-none focus:border-sky-500" placeholder="Upload Photo Profile"
+                                type="file" name="foto" id="foto" accept="image/*"> 
+                        </div>
+                        
                         <button class="w-full p-2 bg-black rounded-full font-bold text-white" type="submit" name="sign-up">Sign Up</button>
                     </form>
                     <p>Have an account already? <a style="color:#1DA1F2;" href="login.php">Sign In</a></p>
