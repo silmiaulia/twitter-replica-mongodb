@@ -41,6 +41,30 @@
         return true;
     }
 
+    // insert new doc account
+    function updateData($document, $user_id, $old_username){
+
+        global $collection;
+
+        $condition = array("username" => $old_username);
+
+        $newdata = array('$set' => $document);
+
+        if($collection->updateMany($condition, $newdata))
+        {
+
+            setSession($document["email"]);
+            return true;
+
+        }
+        else
+        {
+            return false;
+
+        }
+        
+    }
+
     // check if email already registered
     function checkEmail($email){
         

@@ -66,7 +66,7 @@
 
                             <!-- Nav-->
                             <nav class="mt-5 px-2">
-                                <a href="#" class="group flex items-center px-2 py-2 text-base leading-6 font-bold rounded-full hover:bg-gray-200 text-gray-900">
+                                <a href="home.php" class="group flex items-center px-2 py-2 text-base leading-6 font-bold rounded-full hover:bg-gray-200 text-gray-900">
                                     <svg class="mr-4 h-6 w-6 " stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6"></path>
                                     </svg>
@@ -105,7 +105,7 @@
                                     </svg>
                                     Lists
                                 </a>
-                                <a href="profile2.php" class="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-200">
+                                <a href="profile.php" class="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-200">
                                     <svg class="mr-4 h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
                                         <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                                     </svg>
@@ -201,9 +201,9 @@
                                     </div>
                                     <!-- Follow Button -->
                                     <div class="flex flex-col text-right">
-                                        <button class="flex justify-center  max-h-max whitespace-nowrap focus:outline-none  focus:ring  rounded max-w-max border bg-transparent border-blue-500 text-blue-500 hover:border-blue-800 hover:border-blue-800 flex items-center hover:shadow-lg font-bold py-2 px-4 rounded-full mr-0 ml-auto">
+                                        <a href="editprofile.php"><button class="flex justify-center  max-h-max whitespace-nowrap focus:outline-none  focus:ring  rounded max-w-max border bg-transparent border-blue-500 text-blue-500 hover:border-blue-800 hover:border-blue-800 flex items-center hover:shadow-lg font-bold py-2 px-4 rounded-full mr-0 ml-auto">
                                             Edit Profile
-                                        </button>
+                                        </button></a>
                                     </div>
                                 </div>
 
