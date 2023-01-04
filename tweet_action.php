@@ -41,9 +41,9 @@
                     "user_id" => new MongoDB\BSON\ObjectID($user_id),
                     "created_at" => $dt,
                     "text" => $text,
-                    "likes" => 0,
-                    "retweet_count" => 0,
-                    "comment_count" => 0,
+                    "likes" => rand(0,999),
+                    "retweet_count" => rand(0,999),
+                    "comment_count" => rand(0,999),
                     "comment" => $itemComment,
                     "isContent" => TRUE,
                     "content" => $itemContent
@@ -57,9 +57,9 @@
                     "user_id" => new MongoDB\BSON\ObjectID($user_id),
                     "created_at" => $dt,
                     "text" => $text,
-                    "likes" => 0,
-                    "retweet_count" => 0,
-                    "comment_count" => 0,
+                    "likes" => rand(0,999),
+                    "retweet_count" => rand(0,999),
+                    "comment_count" => rand(0,999),
                     "comment" => $itemComment,
                     "isContent" => FALSE
                 );

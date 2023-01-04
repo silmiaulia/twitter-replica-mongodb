@@ -176,7 +176,7 @@
                             <hr class="border-white">
                             <form action="tweet_action.php" method="post" enctype="multipart/form-data">
                                 <!--middle creat tweet-->
-                                <div class="flex">
+                                <div class="flex px-2">
                                     <div class="m-2 w-10 py-1">
                                         <?php echo "<img class='inline-block h-10 w-10 rounded-full' src=\"{$item['foto']['data']}\" alt=''>"; ?>
                                     </div>
@@ -189,7 +189,7 @@
                                 <div class="flex">
                                     <div class="w-10"></div>
 
-                                    <div class="w-64 px-2">
+                                    <div class="w-64 px-4">
 
                                         <div class="flex items-center">
                                             <div class="flex-1 text-center px-1 py-1 m-2">
