@@ -120,9 +120,9 @@
                                 <button class="bg-blue-500 hover:bg-blue-600 w-full mt-5 text-white font-bold py-2 px-4 rounded-full">
                                     Tweet
                                 </button>
-                                <form method="post" action="">
-                                    <button class="bg-blue-500 hover:bg-blue-600 w-full mt-5 text-white font-bold py-2 px-4 rounded-full">
-                                        <input type="submit" name="logout" value="Logout">
+                                <form method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>">
+                                    <button class="bg-blue-500 hover:bg-blue-600 w-full mt-5 text-white font-bold py-2 px-4 rounded-full type="submit" name="logout"">
+                                        Logout
                                     </button>
                                 </form>
                             </nav>
