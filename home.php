@@ -38,7 +38,9 @@
     
     }
 
-    $result = $tweet->find();
+    $filter = [];
+    $options = ['sort' => ['created_at' => -1]];
+    $result = $tweet->find($filter, $options);
 ?>
 <html>
     <head>
@@ -118,10 +120,6 @@
                                     </svg>
                                     More
                                 </a>
-
-                                <button class="bg-blue-500 hover:bg-blue-600 w-full mt-5 text-white font-bold py-2 px-4 rounded-full">
-                                    Tweet
-                                </button>
                                 <form method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>">
                                     <button class="bg-blue-500 hover:bg-blue-600 w-full mt-5 text-white font-bold py-2 px-4 rounded-full type="submit" name="logout"">
                                         Logout
@@ -176,7 +174,7 @@
                             </div>
 
                             <hr class="border-white">
-                            <form action="tweet_action.php" method="post">
+                            <form action="tweet_action.php" method="post" enctype="multipart/form-data">
                                 <!--middle creat tweet-->
                                 <div class="flex">
                                     <div class="m-2 w-10 py-1">
@@ -195,39 +193,9 @@
 
                                         <div class="flex items-center">
                                             <div class="flex-1 text-center px-1 py-1 m-2">
-                                                <a href="#" class="mt-1 group flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-100">
-                                                    <svg class="text-center h-7 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                                        </path>
-                                                    </svg>
-                                                </a>
-                                            </div>
-
-                                            <div class="flex-1 text-center py-2 m-2">
-                                                <a href="#" class="mt-1 group flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-100">
-                                                    <svg class="text-center h-7 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z">
-                                                        </path>
-                                                        <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                                    </svg>
-                                                </a>
-                                            </div>
-
-                                            <div class="flex-1 text-center py-2 m-2">
-                                                <a href="#" class="mt-1 group flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-100">
-                                                    <svg class="text-center h-7 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                                        </path>
-                                                    </svg>
-                                                </a>
-                                            </div>
-
-                                            <div class="flex-1 text-center py-2 m-2">
-                                                <a href="#" class="mt-1 group flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-100">
-                                                    <svg class="text-center h-7 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-                                                        </path>
-                                                    </svg>
+                                                <a href="#" class="mt-1 group flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-normal">
+                                                    <input class="text-gray-400 border rounded-md hover:bg-gray-200 text-md"
+                                                    type="file" name="foto" id="foto" accept="image/*"> 
                                                 </a>
                                             </div>
                                         </div>
@@ -279,9 +247,19 @@
                                                 echo '<div class="pl-16">
                                                     <p class="text-base width-auto font-normal text-black flex-shrink">
                                                         '. $data["text"] .'
-                                                    </p>
+                                                    </p>';
 
-                                                    <div class="flex items-center py-4">
+                                                    if ($data["isContent"] == TRUE) {
+                                                        # code...
+                                                        echo '<div class="md:flex-shrink pr-6 pt-3">
+                                                        <div class="bg-cover bg-no-repeat bg-center rounded-lg w-full h-64" style="height: 200px;">
+                                                            <img class="w-full h-full" src="'. $data['content']['data'] .'" alt="">
+                                                        </div>
+                                                        </div>';
+                                                    }
+                                                    
+
+                                                    echo '<div class="flex items-center py-4">
                                                         <div class="flex-1 flex items-center text-white text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
                                                         <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
                                                             <g>

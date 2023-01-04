@@ -8,7 +8,6 @@
 
     <?php
 
-
     if(isset($_POST['up_tweet'])){
         
             //$tweetID = $_POST['username'];
@@ -20,22 +19,7 @@
             //$created_at = new MongoDB\BSON;
         
 
-            if($_FILES['foto']['size'] == 0) {
-
-                $itemComment = array();
-                $arrays = array(
-                    "user_acc" => $user_acc,
-                    "user_id" => new MongoDB\BSON\ObjectID($user_id),
-                    "created_at" => $dt,
-                    "text" => $text,
-                    "likes" => 0,
-                    "retweet_count" => 0,
-                    "comment_count" => 0,
-                    "comment" => $itemComment
-                );
-
-
-            }else{
+            if($_FILES['foto']['size'] != 0) {
 
                 $fileName = $_FILES['foto']['name'];
                 $fileType = $_FILES['foto']['type'];
@@ -50,7 +34,7 @@
                 ));
 
                 // $foto = $_FILES["foto"];
-                // echo "masuk";
+                echo "masuk";
 
                 $arrays = array(
                     "user_acc" => $user_acc,
@@ -61,10 +45,24 @@
                     "retweet_count" => 0,
                     "comment_count" => 0,
                     "comment" => $itemComment,
+                    "isContent" => TRUE,
                     "content" => $itemContent
                 );
 
+            }else{
 
+                $itemComment = array();
+                $arrays = array(
+                    "user_acc" => $user_acc,
+                    "user_id" => new MongoDB\BSON\ObjectID($user_id),
+                    "created_at" => $dt,
+                    "text" => $text,
+                    "likes" => 0,
+                    "retweet_count" => 0,
+                    "comment_count" => 0,
+                    "comment" => $itemComment,
+                    "isContent" => FALSE
+                );
             }
 
             
