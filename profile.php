@@ -43,6 +43,7 @@
     <head>
         <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
         <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     </head>
    
@@ -174,7 +175,8 @@
                                 </div>
                                 <div class="mx-2">
                                     <h2 class="mb-0 text-xl font-bold text-gray-900"><?php echo "{$item['username']}"; ?></h2>
-                                    <p class="mb-0 w-48 text-xs text-gray-400">9,416 Tweets</p>
+                                    <?php $countTweet = countTweetUser($user_id)  ?>
+                                    <p class="mb-0 w-48 text-xs text-gray-400"><?php echo $countTweet ?> Tweets</p>
                                 </div>
                             </div>
 
@@ -291,15 +293,18 @@
                                                             </svg>
                                                             '. $data["likes"] .'
                                                             </div>
-                                                            <div class="flex-1 flex items-center text-white text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
-                                                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
-                                                                <g>
-                                                                <path d="M17.53 7.47l-5-5c-.293-.293-.768-.293-1.06 0l-5 5c-.294.293-.294.768 0 1.06s.767.294 1.06 0l3.72-3.72V15c0 .414.336.75.75.75s.75-.336.75-.75V4.81l3.72 3.72c.146.147.338.22.53.22s.384-.072.53-.22c.293-.293.293-.767 0-1.06z"></path>
-                                                                <path d="M19.708 21.944H4.292C3.028 21.944 2 20.916 2 19.652V14c0-.414.336-.75.75-.75s.75.336.75.75v5.652c0 .437.355.792.792.792h15.416c.437 0 .792-.355.792-.792V14c0-.414.336-.75.75-.75s.75.336.75.75v5.652c0 1.264-1.028 2.292-2.292 2.292z"></path>
-                                                                </g>
-                                                            </svg>
+
+                                                            <div class="flex-1 flex items-center text-white text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">
+                                                                <form method="post" action="deleteTweet_action.php">
+                                                                    <input type="hidden" name="tweet_id" id="tweet_id" value='. $data["_id"] .'>
+                                                                    <div class="mt-5">
+                                                                        <button class="w-full p-2 bg-red-700 hover:bg-red-500 rounded-full font-bold text-white" type="submit" name="delete">Delete</button>
+                                                                    </div>
+                                                                </form>
                                                             </div>
+
                                                         </div>
+                                                        
     
                                                     </div>
                                                     <hr class="border-white-400">
@@ -314,11 +319,14 @@
                             ?>
                         </ul>
                     </section>
+          
+
 
                     <aside class="w-2/5 h-12 position-relative">
+                         
                         <!--Aside menu (right side)-->
                         <div style="max-width:350px;">
-                            < class="overflow-y-auto fixed  h-screen">
+                            <class="overflow-y-auto fixed  h-screen">
                                 <div class="relative text-gray-300 w-80 p-5">
                                     <button type="submit" class="absolute ml-4 mt-3 mr-4">
                                         <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" width="512px" height="512px">

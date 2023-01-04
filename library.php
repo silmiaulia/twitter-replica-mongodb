@@ -65,6 +65,24 @@
         
     }
 
+    function deleteTweet($tweet_id){
+
+        global $tweet;
+
+        $objectId = new MongoDB\BSON\ObjectID($tweet_id);
+
+        $delRec = $tweet->deleteOne(array('_id'=> $objectId));
+    }
+
+    function countTweetUser($user_id){
+
+        global $tweet;
+
+        $filter = array('user_id' => $user_id);
+
+        return $tweet->count($filter);
+    }
+
     // check if email already registered
     function checkEmail($email){
         
