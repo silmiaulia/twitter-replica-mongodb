@@ -114,6 +114,16 @@
 
     }
 
+    // get data with username 
+    function getData2($username){
+        
+        global $collection;
+        $temp = $collection->findOne(array('username'=> $username));
+
+        return $temp;
+
+    }
+
     // for get image 
     function parseQuery( $template ){
         $values = array_slice( func_get_args(), 1 );
@@ -122,6 +132,14 @@
         $query = var_export( $query, true );
         
         return eval("return $query;");
+    }
+
+    // insert new doc account
+    function up_tweet($document){
+
+        global $tweet;
+        $tweet->insertOne($document);
+        return true;
     }
 
 ?>

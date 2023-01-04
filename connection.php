@@ -10,6 +10,7 @@ require __DIR__.'../../../vendor/autoload.php';
         $db = $con->tubes;
 
         $collection = $db->account; 
+        $tweet = $db->tweet;
 
     }
     catch (Exception $e){
