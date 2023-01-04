@@ -41,12 +41,12 @@
         return true;
     }
 
-    // insert new doc account
-    function updateData($document, $user_id, $old_username){
+    // update new data account
+    function updateData($document, $username){
 
         global $collection;
 
-        $condition = array("username" => $old_username);
+        $condition = array("username" => $username);
 
         $newdata = array('$set' => $document);
 

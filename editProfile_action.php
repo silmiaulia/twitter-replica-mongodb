@@ -67,7 +67,7 @@
 
             if(($emailEmpty == true) && ($usernameEmpty == true)){
 
-                if(updateData($arrays, $user_id, $_POST['username_real'])){
+                if(updateData($arrays, $_POST['username_real'])){
 
                     $message = urlencode("Record updated successfully");
                 }else{

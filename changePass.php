@@ -44,7 +44,7 @@
                             }
 
                     ?>
-                    <form class="form-horizontal space-y-4" method="post" action="editProfile_action.php" enctype="multipart/form-data">
+                    <form class="form-horizontal space-y-4" method="post" action="changePass_action.php" enctype="multipart/form-data">
                         <div class="form-group">
                             <input class="form-control w-full p-2 bg-white rounded-md border border-gray-300 focus:outline-none focus:border-sky-500"
                              type="hidden" 
@@ -85,7 +85,7 @@
                         </div>
                         
                         <div class="mt-5">
-                            <button class="w-full p-2 bg-black hover:bg-gray-700 rounded-full font-bold text-white" type="submit" name="update">Update</button>
+                            <button class="w-full p-2 bg-black hover:bg-gray-700 rounded-full font-bold text-white" type="submit" name="update_pass">Update</button>
                         </div>
 
                         <div class="mt-5">
