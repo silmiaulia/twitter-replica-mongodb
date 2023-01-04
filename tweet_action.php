@@ -14,12 +14,28 @@
             //$tweetID = $_POST['username'];
             $text = $_POST['isi_text'];
             $user_acc = $_SESSION['uname'];
+            $user_id = $_SESSION['user_id'];
             //$dt = new DateTime(date('Y-m-d'), new DateTimeZone('Asia/Jakarta'));
             $dt = date('Y-m-d H:i:s');
             //$created_at = new MongoDB\BSON;
         
 
-            if($_FILES['foto']){
+            if($_FILES['foto']['size'] == 0) {
+
+                $itemComment = array();
+                $arrays = array(
+                    "user_acc" => $user_acc,
+                    "user_id" => new MongoDB\BSON\ObjectID($user_id),
+                    "created_at" => $dt,
+                    "text" => $text,
+                    "likes" => 0,
+                    "retweet_count" => 0,
+                    "comment_count" => 0,
+                    "comment" => $itemComment
+                );
+
+
+            }else{
 
                 $fileName = $_FILES['foto']['name'];
                 $fileType = $_FILES['foto']['type'];
@@ -38,6 +54,7 @@
 
                 $arrays = array(
                     "user_acc" => $user_acc,
+                    "user_id" => new MongoDB\BSON\ObjectID($user_id),
                     "created_at" => $dt,
                     "text" => $text,
                     "likes" => 0,
@@ -47,17 +64,7 @@
                     "content" => $itemContent
                 );
 
-            }else{
-                $itemComment = array();
-                $arrays = array(
-                    "user_acc" => $user_acc,
-                    "created_at" => $dt,
-                    "text" => $text,
-                    "likes" => 0,
-                    "retweet_count" => 0,
-                    "comment_count" => 0,
-                    "comment" => $itemComment
-                );
+
             }
 
             

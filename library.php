@@ -102,6 +102,7 @@
         global $collection;
         $temp = $collection->findOne(array('email'=> $email));
         $_SESSION["uname"] = $temp["username"];
+        $_SESSION["user_id"] = $temp["_id"];
         $_SESSION["email"] = $email;
 
         return true;
@@ -139,10 +140,10 @@
     }
 
     // get data with username 
-    function getData2($username){
+    function getData2($user_id){
         
         global $collection;
-        $temp = $collection->findOne(array('username'=> $username));
+        $temp = $collection->findOne(array('_id'=> $user_id));
 
         return $temp;
 

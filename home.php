@@ -7,7 +7,7 @@
         //echo "Logged in!";
         $username = $_SESSION["uname"];
         //echo "Welcome $username!!!";
-
+        $user_id = $_SESSION["user_id"];
         $email = $_SESSION["email"];
         $getDataAccount = getData($email);
 
@@ -137,15 +137,13 @@
                                         <div class="flex items-center">
                                             <div>
                                                 <?php echo "<img class='inline-block h-10 w-10 rounded-full' src=\"{$item['foto']['data']}\" alt=''>"; ?>
-                                                <!--<img class="inline-block h-10 w-10 rounded-full" src="{$item['foto']['data']}\" alt=""> -->
                                             </div>
                                             <div class="ml-3">
                                                 <p class="text-base leading-6 font-medium text-gray-900">
-                                                    nama acc
-                                                    <!-- <?php echo $email; ?> -->
+                                                    <?php echo "{$item['username']}"; ?>
                                                 </p>
                                                 <p class="text-sm leading-5 font-small text-gray-400 group-hover:text-gray-400 transition ease-in-out duration-150">
-                                                    @<?php echo $username; ?>
+                                                    <?php echo "{$item['email']}"; ?>
                                                 </p>
                                             </div>
                                         </div>
@@ -183,7 +181,6 @@
                                 <div class="flex">
                                     <div class="m-2 w-10 py-1">
                                         <?php echo "<img class='inline-block h-10 w-10 rounded-full' src=\"{$item['foto']['data']}\" alt=''>"; ?>
-                                        <!-- <img class="inline-block h-10 w-10 rounded-full" src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png" alt=""> -->
                                     </div>
                                     <div class="flex-1 px-2 pt-2 mt-2">
                                         <textarea class="bg-transparent text-gray-500 font-small focus:outline-0 text-lg w-full" rows="2" cols="50" id="isi_text" name="isi_text" placeholder="What's happening?"></textarea>
@@ -253,15 +250,10 @@
                                     # code...
                                     foreach ($result as $data) {
                                         # code...
-                                        $user_tweet = $data["user_acc"];
+                                        $user_tweet = $data["user_id"];
+
                                         $getDataUser = getData2($user_tweet);
 
-                                        // buat nampilin foto
-                                        $fileNameUser = $getDataUser['foto']['name'];
-                                        $fileTypeUser = $getDataUser['foto']['type'];
-                                        $queryFind = '{"username": "%s", "foto.name":"%s", "foto.type":"%s"}';
-                                        $user = $collection->findOne(parseQuery($queryFind, $user_tweet, $fileNameUser, $fileTypeUser) );
-                                        
                                         echo '<li>
                                             <!--timeline tweet--> 
                                             <article class="hover:bg-gray-200 transition duration-350 ease-in-out">
@@ -269,13 +261,13 @@
                                                     <a href="#" class="flex-shrink-0 group block">
                                                         <div class="flex items-center">
                                                             <div>
-                                                                <img class="inline-block h-10 w-10 rounded-full" src="'. $user['foto']['data'] .'" alt="">
+                                                                <img class="inline-block h-10 w-10 rounded-full" src="'. $getDataUser['foto']['data'] .'" alt="">
                                                             </div>
                                                             <div class="ml-3">
                                                                 <p class="text-base leading-6 font-medium text-gray-900">
-                                                                    '. $user["username"].'
+                                                                    '. $getDataUser["username"].'
                                                                     <span class="text-sm leading-5 font-normal text-gray-500 group-hover:text-gray-600 transition ease-in-out duration-150">
-                                                                        '. $user["email"] .'  <span>&#183;</span> 2h
+                                                                        '. $getDataUser["email"] .'  <span>&#183;</span> 2h
                                                                     </span>
                                                                 </p>
                                                             </div>
@@ -460,25 +452,27 @@
                                     <!--first person who to follow-->
                                     <?php
                                         $follow_suggest = $collection->find();
+
                                         if (!empty($follow_suggest)) {
                                             # code...
                                             foreach ($follow_suggest as $fol) {
                                                 # code...
-                                                $unm_ = $fol["username"];
+                                                $unm_ = $fol["_id"];
+
                                                 $getDataUser = getData2($unm_);
 
-                                                $fileNameUser = $getDataUser['foto']['name'];
-                                                $fileTypeUser = $getDataUser['foto']['type'];
-                                                $queryFind = '{"username": "%s", "foto.name":"%s", "foto.type":"%s"}';
-                                                $user_fol = $collection->findOne(parseQuery($queryFind, $unm_, $fileNameUser, $fileTypeUser) );
+                                                // $fileNameUser = $getDataUser['foto']['name'];
+                                                // $fileTypeUser = $getDataUser['foto']['type'];
+                                                // $queryFind = '{"username": "%s", "foto.name":"%s", "foto.type":"%s"}';
+                                                // $user_fol = $collection->findOne(parseQuery($queryFind, $unm_, $fileNameUser, $fileTypeUser) );
 
-                                                if ($unm_ != $username) {
+                                                if ($unm_ != $user_id) {
                                                     # code...
                                                     echo '<div class="flex flex-shrink-0">
                                                     <div class="flex-1 ">
                                                         <div class="flex items-center w-48">
                                                             <div>
-                                                                <img class="inline-block h-10 w-10 rounded-full ml-4 mt-2" src="'. $user_fol['foto']['data'] .'" alt="">
+                                                                <img class="inline-block h-10 w-10 rounded-full ml-4 mt-2" src="'. $getDataUser['foto']['data'] .'" alt="">
                                                             </div>
                                                             <div class="ml-3 mt-3">
                                                                 <p class="text-base leading-6 font-medium text-black">
