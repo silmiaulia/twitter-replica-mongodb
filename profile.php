@@ -37,7 +37,9 @@
     
     }
 
-    $result = $tweet->find();
+    $filter = [];
+    $options = ['sort' => ['created_at' => -1]];
+    $result = $tweet->find($filter, $options);
 ?>
 <html>
     <head>
@@ -68,9 +70,9 @@
 
                             <!-- Nav-->
                             <nav class="mt-5 px-2">
-                                <a href="home.php" class="group flex items-center px-2 py-2 text-base leading-6 font-bold rounded-full hover:bg-gray-200 text-gray-900">
+                                <a href="home.php" class="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-200">
                                     <svg class="mr-4 h-6 w-6 " stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6"></path>
                                     </svg>
                                     Home
                                 </a>
@@ -107,8 +109,8 @@
                                     </svg>
                                     Lists
                                 </a>
-                                <a href="profile.php" class="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-200">
-                                    <svg class="mr-4 h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
+                                <a href="profile.php" class="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-bold rounded-full hover:bg-gray-200 text-gary-900">
+                                    <svg class="mr-4 h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" stroke="currentColor" viewBox="0 0 24 24">
                                         <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                                     </svg>
                                     Profile
@@ -119,10 +121,6 @@
                                     </svg>
                                     More
                                 </a>
-
-                                <button class="bg-blue-500 hover:bg-blue-600 w-full mt-5 text-white font-bold py-2 px-4 rounded-full">
-                                    Tweet
-                                </button>
                                 <form method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>">
                                     <button class="bg-blue-500 hover:bg-blue-600 w-full mt-5 text-white font-bold py-2 px-4 rounded-full type="submit" name="logout"">
                                         Logout
@@ -240,6 +238,15 @@
 
                                         if($user_tweet == $user_id){
                                             $getDataUser = getData2($user_tweet);
+                                            $now = new DateTime();
+                                            $date = new DateTime($data['created_at']);
+                                            if ($date->diff($now)->format("%h") < 1) {
+                                                $date_res = $date->diff($now)->format("%im");
+                                            } else if ($date->diff($now)->format("%d") < 1) {
+                                                $date_res = $date->diff($now)->format("%hh");
+                                            } else {
+                                                $date_res = $date->diff($now)->format("%dd");
+                                            }
 
                                             echo '<li>
                                                 <!--timeline tweet--> 
@@ -254,7 +261,7 @@
                                                                     <p class="text-base leading-6 font-medium text-gray-900">
                                                                         '. $getDataUser["username"].'
                                                                         <span class="text-sm leading-5 font-normal text-gray-500 group-hover:text-gray-600 transition ease-in-out duration-150">
-                                                                            '. $getDataUser["email"] .'  <span>&#183;</span> 2h
+                                                                            '. $getDataUser["email"] .'  <span>&#183;</span> '. $date_res .'
                                                                         </span>
                                                                     </p>
                                                                 </div>
@@ -266,16 +273,25 @@
                                                     echo '<div class="pl-16">
                                                         <p class="text-base width-auto font-normal text-black flex-shrink">
                                                             '. $data["text"] .'
-                                                        </p>
+                                                        </p>';
+
+                                                        if ($data["isContent"] == TRUE) {
+                                                            # code...
+                                                            echo '<div class="md:flex-shrink pr-6 pt-3">
+                                                            <div class="bg-cover bg-no-repeat bg-center rounded-lg w-full h-64" style="height: 200px;">
+                                                                <img class="w-full h-full" src="'. $data['content']['data'] .'" alt="">
+                                                            </div>
+                                                            </div>';
+                                                        }
     
-                                                        <div class="flex items-center py-4">
+                                                    echo '<div class="flex items-center py-4">
                                                             <div class="flex-1 flex items-center text-white text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
                                                             <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
                                                                 <g>
                                                                 <path d="M14.046 2.242l-4.148-.01h-.002c-4.374 0-7.8 3.427-7.8 7.802 0 4.098 3.186 7.206 7.465 7.37v3.828c0 .108.044.286.12.403.142.225.384.347.632.347.138 0 .277-.038.402-.118.264-.168 6.473-4.14 8.088-5.506 1.902-1.61 3.04-3.97 3.043-6.312v-.017c-.006-4.367-3.43-7.787-7.8-7.788zm3.787 12.972c-1.134.96-4.862 3.405-6.772 4.643V16.67c0-.414-.335-.75-.75-.75h-.396c-3.66 0-6.318-2.476-6.318-5.886 0-3.534 2.768-6.302 6.3-6.302l4.147.01h.002c3.532 0 6.3 2.766 6.302 6.296-.003 1.91-.942 3.844-2.514 5.176z"></path>
                                                                 </g>
                                                             </svg>
-                                                            '. $data["likes"] .' k
+                                                            '. $data["comment_count"] .'
                                                             </div>
                                                             <div class="flex-1 flex items-center text-white text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
                                                             <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
@@ -326,7 +342,7 @@
                          
                         <!--Aside menu (right side)-->
                         <div style="max-width:350px;">
-                            <class="overflow-y-auto fixed  h-screen">
+                            <div class="overflow-y-auto fixed h-screen">
                                 <div class="relative text-gray-300 w-80 p-5">
                                     <button type="submit" class="absolute ml-4 mt-3 mr-4">
                                         <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" width="512px" height="512px">
@@ -337,6 +353,77 @@
                                     <input type="search" name="search" placeholder="Search Twitter" class=" bg-dim-700 h-10 px-10 pr-5 w-full rounded-full text-sm focus:outline-none bg-purple-white shadow rounded border-0">
                                 </div>
                                 
+                                <!--people suggetion to follow section-->
+                                <div class="max-w-sm rounded-lg  bg-gray-50 overflow-hidden shadow-lg m-4 mt-8">
+                                                                    <div class="flex">
+                                        <div class="flex-1 m-2">
+                                            <h2 class="px-4 py-2 text-xl w-48 font-bold text-black">Who to follow</h2>
+                                        </div>
+                                    </div>
+
+
+                                    <hr class="border-gray-50">
+
+                                                                        <!--first person who to follow-->
+                                    <?php
+                                        $follow_suggest = $collection->find();
+
+                                        if (!empty($follow_suggest)) {
+                                            # code...
+                                            foreach ($follow_suggest as $fol) {
+                                                # code...
+                                                $unm_ = $fol["_id"];
+
+                                                $getDataUser = getData2($unm_);
+
+                                                // $fileNameUser = $getDataUser['foto']['name'];
+                                                // $fileTypeUser = $getDataUser['foto']['type'];
+                                                // $queryFind = '{"username": "%s", "foto.name":"%s", "foto.type":"%s"}';
+                                                // $user_fol = $collection->findOne(parseQuery($queryFind, $unm_, $fileNameUser, $fileTypeUser) );
+
+                                                if ($unm_ != $user_id) {
+                                                    # code...
+                                                    echo '<div class="flex flex-shrink-0">
+                                                    <div class="flex-1 ">
+                                                        <div class="flex items-center w-48">
+                                                            <div>
+                                                                <img class="inline-block h-10 w-10 rounded-full ml-4 mt-2" src="'. $getDataUser['foto']['data'] .'" alt="">
+                                                            </div>
+                                                            <div class="ml-3 mt-3">
+                                                                <p class="text-base leading-6 font-medium text-black">
+                                                                    '. $fol["username"] .'
+                                                                </p>
+                                                                <p class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
+                                                                    '. $fol["email"] .' 
+                                                                </p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="flex-1 px-4 py-2 m-2">
+                                                        <a href="" class=" float-right">
+                                                            <button class="bg-black hover:bg-gray-800 text-white font-semibold hover:text-white py-2 px-4 border border-gray hover:border-transparent rounded-full">
+                                                                Follow
+                                                            </button>
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+                                                <hr class="border-gray-50">';
+                                                }
+                                            }
+                                        }
+                                    ?>
+                                    
+                                    <!--show more-->
+                                    <div class="flex hover:bg-gray-100">
+                                        <div class="flex-1 p-4">
+                                            <h2 class="pr-4 ml-2 w-48 font-bold text-blue-400 hover:text-blue-500">Show more</h2>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                                 <!--trending tweet section-->
                                 <div class="max-w-sm rounded-lg bg-gray-50 overflow-hidden shadow-lg m-4">
                                     <div class="flex">
@@ -424,78 +511,6 @@
                                     </div>
                                     <hr class="border-gray-50">
 
-                                    <!--show more-->
-                                    <div class="flex hover:bg-gray-100">
-                                        <div class="flex-1 p-4">
-                                            <h2 class="pr-4 ml-2 w-48 font-bold text-blue-400 hover:text-blue-500">Show more</h2>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                
-                                <!--people suggetion to follow section-->
-                                <div class="max-w-sm rounded-lg  bg-gray-50 overflow-hidden shadow-lg m-4 mt-8">
-                                                                    <div class="flex">
-                                        <div class="flex-1 m-2">
-                                            <h2 class="px-4 py-2 text-xl w-48 font-bold text-black">Who to follow</h2>
-                                        </div>
-                                    </div>
-
-
-                                    <hr class="border-gray-50">
-
-                                                                        <!--first person who to follow-->
-                                    <?php
-                                        $follow_suggest = $collection->find();
-
-                                        if (!empty($follow_suggest)) {
-                                            # code...
-                                            foreach ($follow_suggest as $fol) {
-                                                # code...
-                                                $unm_ = $fol["_id"];
-
-                                                $getDataUser = getData2($unm_);
-
-                                                // $fileNameUser = $getDataUser['foto']['name'];
-                                                // $fileTypeUser = $getDataUser['foto']['type'];
-                                                // $queryFind = '{"username": "%s", "foto.name":"%s", "foto.type":"%s"}';
-                                                // $user_fol = $collection->findOne(parseQuery($queryFind, $unm_, $fileNameUser, $fileTypeUser) );
-
-                                                if ($unm_ != $user_id) {
-                                                    # code...
-                                                    echo '<div class="flex flex-shrink-0">
-                                                    <div class="flex-1 ">
-                                                        <div class="flex items-center w-48">
-                                                            <div>
-                                                                <img class="inline-block h-10 w-10 rounded-full ml-4 mt-2" src="'. $getDataUser['foto']['data'] .'" alt="">
-                                                            </div>
-                                                            <div class="ml-3 mt-3">
-                                                                <p class="text-base leading-6 font-medium text-black">
-                                                                    '. $fol["username"] .'
-                                                                </p>
-                                                                <p class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                                                                    '. $fol["email"] .' 
-                                                                </p>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="flex-1 px-4 py-2 m-2">
-                                                        <a href="" class=" float-right">
-                                                            <button class="bg-black hover:bg-gray-800 text-white font-semibold hover:text-white py-2 px-4 border border-gray hover:border-transparent rounded-full">
-                                                                Follow
-                                                            </button>
-                                                        </a>
-
-                                                    </div>
-                                                </div>
-                                                <hr class="border-gray-50">';
-                                                }
-                                            }
-                                        }
-                                    ?>
-                                    
                                     <!--show more-->
                                     <div class="flex hover:bg-gray-100">
                                         <div class="flex-1 p-4">

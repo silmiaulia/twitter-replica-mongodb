@@ -221,6 +221,15 @@
                                         $user_tweet = $data["user_id"];
 
                                         $getDataUser = getData2($user_tweet);
+                                        $now = new DateTime();
+                                        $date = new DateTime($data['created_at']);
+                                        if ($date->diff($now)->format("%h") < 1) {
+                                            $date_res = $date->diff($now)->format("%im");
+                                        } else if ($date->diff($now)->format("%d") < 1) {
+                                            $date_res = $date->diff($now)->format("%hh");
+                                        } else {
+                                            $date_res = $date->diff($now)->format("%dd");
+                                        }
 
                                         echo '<li>
                                             <!--timeline tweet--> 
@@ -235,7 +244,7 @@
                                                                 <p class="text-base leading-6 font-medium text-gray-900">
                                                                     '. $getDataUser["username"].'
                                                                     <span class="text-sm leading-5 font-normal text-gray-500 group-hover:text-gray-600 transition ease-in-out duration-150">
-                                                                        '. $getDataUser["email"] .'  <span>&#183;</span> 2h
+                                                                        '. $getDataUser["email"] .'  <span>&#183;</span> '. $date_res .'
                                                                     </span>
                                                                 </p>
                                                             </div>
@@ -259,14 +268,14 @@
                                                     }
                                                     
 
-                                                    echo '<div class="flex items-center py-4">
+                                                echo '<div class="flex items-center py-4">
                                                         <div class="flex-1 flex items-center text-white text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
                                                         <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
                                                             <g>
                                                             <path d="M14.046 2.242l-4.148-.01h-.002c-4.374 0-7.8 3.427-7.8 7.802 0 4.098 3.186 7.206 7.465 7.37v3.828c0 .108.044.286.12.403.142.225.384.347.632.347.138 0 .277-.038.402-.118.264-.168 6.473-4.14 8.088-5.506 1.902-1.61 3.04-3.97 3.043-6.312v-.017c-.006-4.367-3.43-7.787-7.8-7.788zm3.787 12.972c-1.134.96-4.862 3.405-6.772 4.643V16.67c0-.414-.335-.75-.75-.75h-.396c-3.66 0-6.318-2.476-6.318-5.886 0-3.534 2.768-6.302 6.3-6.302l4.147.01h.002c3.532 0 6.3 2.766 6.302 6.296-.003 1.91-.942 3.844-2.514 5.176z"></path>
                                                             </g>
                                                         </svg>
-                                                        '. $data["likes"] .' k
+                                                        '. $data["comment_count"] .'
                                                         </div>
                                                         <div class="flex-1 flex items-center text-white text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
                                                         <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
