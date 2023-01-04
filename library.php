@@ -41,6 +41,30 @@
         return true;
     }
 
+    // update new data account
+    function updateData($document, $username){
+
+        global $collection;
+
+        $condition = array("username" => $username);
+
+        $newdata = array('$set' => $document);
+
+        if($collection->updateMany($condition, $newdata))
+        {
+
+            setSession($document["email"]);
+            return true;
+
+        }
+        else
+        {
+            return false;
+
+        }
+        
+    }
+
     // check if email already registered
     function checkEmail($email){
         

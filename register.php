@@ -41,8 +41,12 @@
                             <input class="form-control w-full p-2 mb-15 bg-white rounded-md border border-gray-300 focus:outline-none focus:border-sky-500" placeholder="Confirm Password"
                             type="password" id="cpass" name="cpass" onblur="chk()" required> 
                         </div>
-                        <input class="form-control w-full p-2 mb-15 bg-white rounded-md border border-gray-300 focus:outline-none focus:border-sky-500" placeholder="Upload Photo Profile"
-                            type="file" name="foto" id="foto" accept="image/*"> 
+                        <div>
+                            <label for="foto" class="py-5">Upload Photo Profile</label>
+                            <input class="form-control w-full p-2 mb-15 bg-white rounded-md border border-gray-300 focus:outline-none focus:border-sky-500" placeholder="Upload Photo Profile"
+                                type="file" name="foto" id="foto" accept="image/*" required> 
+                        </div>
+                        
                         <button class="w-full p-2 bg-black rounded-full font-bold text-white" type="submit" name="sign-up">Sign Up</button>
                     </form>
                     <p>Have an account already? <a style="color:#1DA1F2;" href="login.php">Sign In</a></p>
@@ -52,40 +56,4 @@
         </div>
     </body>
     
-    <!-- <body>
-      
-        <form class="form-horizontal" action="register_action.php" method="post">
-          <div class="form-group">
-            <label for="inputFname3" class="col-sm-2 control-label">Username</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputUsername" name="username" placeholder="First Name" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-            </div>
-          </div>
-           <div class="form-group">
-            <label for="inputCpassword3" class="col-sm-2 control-label">Confirm Password</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control" id="cpass" name="cpass" onblur="chk()" placeholder="Confirm Password" required>
-            <div id="error"></div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-default" name="sign-up">Sign Up</button>
-            </div>
-          </div>
-        </form>
-        <script src="myscript.js" type="text/javascript"></script>
-    </body> -->
 </html>

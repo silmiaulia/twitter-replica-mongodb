@@ -1,11 +1,6 @@
 <?php require_once 'connection.php'; ?>
 <?php require_once 'library.php'; ?>
-<?php
-    
-    if(isLogin()){
-        header("Location: home.php");
-    }
-?>
+
 
 <html>
     <head>
@@ -16,28 +11,24 @@
     <?php
 
 
-    if(isset($_POST['sign-up'])){
+    if(isset($_POST['update'])){
         
             $username = $_POST['username'];
             $email = $_POST['email'];
-            $temp  = $_POST['password'];
-            $options = array('cost' => 10);
-            $password = password_hash($temp, PASSWORD_BCRYPT, $options);
-        
+            $user_id =  $_POST['user_id'];
 
             if($_FILES['foto']['size'] == 0) {
                 
+                // No file was selected for upload
+
                 $arrays = array(
                 
                     "username" => $username,
                     "email" => $email,
-                    "password" => $password
                 
                 );
 
-
             }else{
-
 
                 $fileName = $_FILES['foto']['name'];
                 $fileType = $_FILES['foto']['type'];
@@ -50,28 +41,41 @@
                     'data' => $dataUrl
                 ));
 
-                // $foto = $_FILES["foto"];
-                // echo "masuk";
-
                 $arrays = array(
                     "username" => $username,
                     "email" => $email,
-                    "password" => $password,
                     "foto" => $item
                 
                 );
+
+            }
+
+            if($username ==  $_POST['username_real']){
+
+                $usernameEmpty = true;
+            }else{
+                $usernameEmpty = checkUsername($username);
+            }
+
+            if($email ==  $_POST['email_real']){
+
+                $emailEmpty = true;
+            }else{
+                $emailEmpty = checkEmail($email);
             }
 
 
-
-            
-            $emailEmpty = checkEmail($email);
-            $usernameEmpty = checkUsername($username);
-
             if(($emailEmpty == true) && ($usernameEmpty == true)){
 
-                register($arrays);
-                header("Location: login.php");
+                if(updateData($arrays, $_POST['username_real'])){
+
+                    $message = urlencode("Record updated successfully");
+                }else{
+
+                    $message = urlencode("Error in update");
+                }
+
+                header("Location: editprofile.php?message={$message}");
             
             }else{
 
@@ -90,10 +94,10 @@
                                                 </path>
                                             </g>
                                         </svg>
-                                        <h1 class="text-black text-3xl font-bold ">Creat your account</h1>
+                                        <h1 class="text-black text-3xl font-bold ">Edit Profile</h1>
                                         <div class="text-center py-8 text-lg">
-                                            <h2 class="text-red-500">Email already registered</h2>
-                                            <h2 class="text-red-500">Please <a class="text-[#1DA1F2]" href='register.php'>Register</a> with another email</h2>
+                                            <h2 class="text-red-500">Email is already registered</h2>
+                                            <h2 class="text-red-500">Please <a class="text-[#1DA1F2]" href='editprofile.php'>Input</a> another email</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -118,24 +122,21 @@
                                                     </path>
                                                 </g>
                                             </svg>
-                                            <h1 class="text-black text-3xl font-bold ">Creat your account</h1>
+                                            <h1 class="text-black text-3xl font-bold ">Edit Profile</h1>
                                             <div class="text-center py-8 text-lg">
-                                                <h2 class="text-red-500">The username already exists</h2>
-                                                <h2 class="text-red-500">Please <a class="text-[#1DA1F2]" href='register.php'>Register</a> with another username</h2>
+                                                <h2 class="text-red-500">Username has already been taken</h2>
+                                                <h2 class="text-red-500">Please <a class="text-[#1DA1F2]" href='editprofile.php'>Input</a> another username</h2>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </body>
                         <?php
-                        // echo "username already taken!";
-                        // echo"<br>";
-                        // echo "Please <a href='register.php'>Register</a> with another username";
+
+                        
                     }
                 }
-
-
-
+            
 
 
         }

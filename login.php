@@ -39,7 +39,7 @@
         <div class="flex min-h-screen items-center justify-center">
 
             <div class="min-h-1/2 bg-white rounded-2xl shadow-lg">
-                <div class="px-32 flex items-center space-y-4 py-28 text-gray-500 flex-col">
+                <div class="px-32 flex items-center space-y-4 py-20 text-gray-500 flex-col">
                     <svg viewBox="0 0 24 24" class=" h-12 w-12 text-[#1DA1F2]" fill="currentColor">
                         <g>
                             <path
