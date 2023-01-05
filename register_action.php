@@ -25,7 +25,7 @@
             $password = password_hash($temp, PASSWORD_BCRYPT, $options);
         
 
-            if($_FILES['foto']['size'] == 0) {
+            if($_FILES['foto']['size'] == 0) { // if not upload foto
                 
                 $arrays = array(
                 
@@ -50,9 +50,6 @@
                     'data' => $dataUrl
                 ));
 
-                // $foto = $_FILES["foto"];
-                // echo "masuk";
-
                 $arrays = array(
                     "username" => $username,
                     "email" => $email,
@@ -64,18 +61,18 @@
 
 
 
-            
+            // if if email and username exist in db
             $emailEmpty = checkEmail($email);
             $usernameEmpty = checkUsername($username);
 
             if(($emailEmpty == true) && ($usernameEmpty == true)){
 
-                register($arrays);
+                register($arrays); //insert new account
                 header("Location: login.php");
             
             }else{
 
-                if($emailEmpty == false){
+                if($emailEmpty == false){ //email already exist
 
                     ?>
                         <body class="bg-[#D9D9DB]">
@@ -103,7 +100,7 @@
 
                 }else{
 
-                    if($usernameEmpty == false){
+                    if($usernameEmpty == false){ //username already exist
 
                         ?>
                             <body class="bg-[#D9D9DB]">

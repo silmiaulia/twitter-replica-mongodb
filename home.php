@@ -3,16 +3,13 @@
 
     if(isLogin()){ //if login success
        
-        //buat nampilin username
-        //echo "Logged in!";
+
         $username = $_SESSION["uname"];
-        //echo "Welcome $username!!!";
         $user_id = $_SESSION["user_id"];
         $email = $_SESSION["email"];
         $getDataAccount = getData($email);
 
         // buat nampilin foto
-        
         $fileName = $getDataAccount['foto']['name'];
         $fileType = $getDataAccount['foto']['type'];
 
@@ -217,10 +214,10 @@
                                 if (!empty($result)): {
                                     # code...
                                     foreach ($result as $data) {
-                                        # code...
+                                        
                                         $user_tweet = $data["user_id"];
+                                        $getDataUser = getData2($user_tweet); // get data account 
 
-                                        $getDataUser = getData2($user_tweet);
                                         $now = new DateTime();
                                         $date = new DateTime($data['created_at']);
                                         if ($date->diff($now)->format("%h") < 1) {
@@ -441,17 +438,12 @@
                                         $follow_suggest = $collection->find();
 
                                         if (!empty($follow_suggest)) {
-                                            # code...
+                                            
                                             foreach ($follow_suggest as $fol) {
-                                                # code...
+                                                
                                                 $unm_ = $fol["_id"];
+                                                $getDataUser = getData2($unm_); // get data account
 
-                                                $getDataUser = getData2($unm_);
-
-                                                // $fileNameUser = $getDataUser['foto']['name'];
-                                                // $fileTypeUser = $getDataUser['foto']['type'];
-                                                // $queryFind = '{"username": "%s", "foto.name":"%s", "foto.type":"%s"}';
-                                                // $user_fol = $collection->findOne(parseQuery($queryFind, $unm_, $fileNameUser, $fileTypeUser) );
 
                                                 if ($unm_ != $user_id) {
                                                     # code...

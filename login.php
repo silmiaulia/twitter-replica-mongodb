@@ -8,32 +8,10 @@
 ?>
 <html>
     <head>
-        <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+
         <script src="https://cdn.tailwindcss.com"></script>
 
     </head>
-    <!-- <body>
-        <div class="container">
-            <div>
-                <h1>Sign in to Twitter</h1>
-            </div>
-            <form class="form-horizontal" method="post" action="login_action.php">
-                <div class="form-group">
-                    <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail3" name="email" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="exampleInputPassword3">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword3" name="password" placeholder="Password" required>
-                </div>
-                <div>
-                    <p>Don't have an account? <a style="color:#009d63; ;" href="register.php">Sign Up</a></p>
-                </div>
-                <button type="submit" name="login" class="btn btn-default">Sign in</button>
-                
-            </form>
-        </div>
-    </body> -->
 
     <body class="bg-[#D9D9DB]">
         <div class="flex min-h-screen items-center justify-center">

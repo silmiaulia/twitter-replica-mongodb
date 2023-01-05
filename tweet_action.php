@@ -10,16 +10,12 @@
 
     if(isset($_POST['up_tweet'])){
         
-            //$tweetID = $_POST['username'];
             $text = $_POST['isi_text'];
             $user_acc = $_SESSION['uname'];
             $user_id = $_SESSION['user_id'];
-            //$dt = new DateTime(date('Y-m-d'), new DateTimeZone('Asia/Jakarta'));
             $dt = date('Y-m-d H:i:s');
-            //$created_at = new MongoDB\BSON;
-        
 
-            if($_FILES['foto']['size'] != 0) {
+            if($_FILES['foto']['size'] != 0) { // upload foto
 
                 $fileName = $_FILES['foto']['name'];
                 $fileType = $_FILES['foto']['type'];
@@ -49,7 +45,7 @@
                     "content" => $itemContent
                 );
 
-            }else{
+            }else{ // not upload foto
 
                 $itemComment = array();
                 $arrays = array(
@@ -70,9 +66,12 @@
             if(($user_acc != null)){
 
 
-                $res = up_tweet($arrays);
+                $res = up_tweet($arrays); //insert new tweet
+
                 if ($res == TRUE) {
+                    
                     header("Location: home.php");
+
                 }else{
                     ?>
                         <body class="bg-[#D9D9DB]">

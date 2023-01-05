@@ -30,7 +30,7 @@
                     </svg>
                     <h1 class="text-black text-3xl font-bold py-8">Edit Profile</h1>
                     <?php
-                            
+                            // show message after update
                             if (isset($_GET['message'])) {
 
                                 $pesan = trim($_GET['message']);

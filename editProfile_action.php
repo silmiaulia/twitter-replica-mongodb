@@ -51,14 +51,15 @@
             }
 
             if($username ==  $_POST['username_real']){
-
+                // if new input username same as the old username 
                 $usernameEmpty = true;
             }else{
+                // if new input is not the sama as the old username, check if the new one exist in db
                 $usernameEmpty = checkUsername($username);
             }
 
             if($email ==  $_POST['email_real']){
-
+                // if new input email same as the old email 
                 $emailEmpty = true;
             }else{
                 $emailEmpty = checkEmail($email);
@@ -67,7 +68,7 @@
 
             if(($emailEmpty == true) && ($usernameEmpty == true)){
 
-                if(updateData($arrays, $_POST['username_real'])){
+                if(updateData($arrays, $_POST['username_real'])){ // if update return true
 
                     $message = urlencode("Record updated successfully");
                 }else{

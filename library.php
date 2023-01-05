@@ -65,6 +65,7 @@
         
     }
 
+    // delete tweet
     function deleteTweet($tweet_id){
 
         global $tweet;
@@ -74,6 +75,7 @@
         $delRec = $tweet->deleteOne(array('_id'=> $objectId));
     }
 
+    // count tweet from a user
     function countTweetUser($user_id){
 
         global $tweet;
@@ -147,7 +149,7 @@
     }
 
     
-    // get data with email 
+    // get data account with email 
     function getData($email){
         
         global $collection;
@@ -157,7 +159,7 @@
 
     }
 
-    // get data with username 
+    // get data account with username 
     function getData2($user_id){
         
         global $collection;
@@ -177,7 +179,7 @@
         return eval("return $query;");
     }
 
-    // insert new doc account
+    // insert new doc tweet
     function up_tweet($document){
 
         global $tweet;

@@ -6,12 +6,11 @@
 
 
     if(isset($_POST['delete'])){
-        
-            echo "haloo";
+
             $tweet_id = $_POST['tweet_id'];
             echo $tweet_id;
 
-            deleteTweet($tweet_id);
+            deleteTweet($tweet_id); // call func to delete tweet from db
 
             header("Location: profile.php");
 

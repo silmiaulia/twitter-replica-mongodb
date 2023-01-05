@@ -2,16 +2,14 @@
     require_once 'library.php';
 
     if(isLogin()){ //if login success
-       
-        //buat nampilin username
-        //echo "Logged in!";
+
         $username = $_SESSION["uname"];
         $user_id = $_SESSION["user_id"];
         $email = $_SESSION["email"];
+
         $getDataAccount = getData($email);
 
         // buat nampilin foto
-        
         $fileName = $getDataAccount['foto']['name'];
         $fileType = $getDataAccount['foto']['type'];
 
@@ -376,10 +374,6 @@
 
                                                 $getDataUser = getData2($unm_);
 
-                                                // $fileNameUser = $getDataUser['foto']['name'];
-                                                // $fileTypeUser = $getDataUser['foto']['type'];
-                                                // $queryFind = '{"username": "%s", "foto.name":"%s", "foto.type":"%s"}';
-                                                // $user_fol = $collection->findOne(parseQuery($queryFind, $unm_, $fileNameUser, $fileTypeUser) );
 
                                                 if ($unm_ != $user_id) {
                                                     # code...

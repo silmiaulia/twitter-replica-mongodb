@@ -16,12 +16,13 @@
     <?php
         if(isset($_POST['login'])){
 
+            // get data from post
             $email = $_POST['email'];
             $upass = $_POST['password'];
             $criteria = array("email"=> $email);
             $query = $collection->findOne($criteria);
 
-            if(empty($query)){
+            if(empty($query)){ // email not exist in db
 
                 ?>
                     <body class="bg-[#D9D9DB]">
@@ -52,7 +53,7 @@
                 
                     $pass = $query["password"];
 
-                    if(password_verify($upass,$pass)){
+                    if(password_verify($upass,$pass)){ //check pass
 
                         $var = setSession($email);
 

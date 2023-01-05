@@ -13,19 +13,20 @@
     <?php
         if(isset($_POST['update_pass'])){
 
+            // get data from post
             $username = $_POST['username_real'];
             $email = $_POST['email_real'];
             $old_pass = $_POST['old_password'];
             
 
             $criteria = array("username"=> $username);
-            $query = $collection->findOne($criteria);
+            $query = $collection->findOne($criteria); // get data account
 
             $pass = $query["password"];
 
-            if(password_verify($old_pass,$pass)){
+            if(password_verify($old_pass,$pass)){ // if user input the right old password
 
-
+                // get input new password
                 $new_pass = $_POST['password'];
                 $options = array('cost' => 10);
                 $password = password_hash($new_pass, PASSWORD_BCRYPT, $options);
@@ -36,7 +37,7 @@
                 );
 
                 
-                if(updateData($arrays, $username)){
+                if(updateData($arrays, $username)){ // if update return true
 
                     $message = urlencode("Record updated successfully");
                 }else{
@@ -48,7 +49,7 @@
 
             }
 
-            else{
+            else{ // user input the wrong old password, display error
 
                 ?>
                 <body class="bg-[#D9D9DB]">
